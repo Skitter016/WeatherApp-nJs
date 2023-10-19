@@ -13,7 +13,7 @@ function Forecast({ className }) {
     const fetchForecastData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`
+          `http://localhost:8000/api/day1`
         );
         setForecastData(response.data.list);
       } catch (error) {

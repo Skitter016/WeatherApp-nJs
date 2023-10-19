@@ -17,15 +17,14 @@ function Home({ className }) {
   //api
   const fetchWeather = async () => {
     try {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-      );
+      const response = await axios.post('http://localhost:8000/', { city });
       setWeatherData([...weatherData, response.data]);
       setCity('');
     } catch (error) {
       console.error('Error fetching weather:', error);
     }
   };
+  
 
   //show
   useEffect(() => {
