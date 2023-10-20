@@ -62,11 +62,11 @@ function Forecast({ className }) {
   );
 }
 
-Forecast.propTypes = {
+History.propTypes = {
   className: PropTypes.string.isRequired
 }
 
-export default styled(Forecast)`
+export default styled(History)`
 
 
   display: flex;

@@ -13,7 +13,7 @@ function Navbar({ className }) {
       <Link to="/" className='navbar-logo'><img src={logo} alt="Company Logo" /></Link>
       <Link to="/" className='B'>Homepage</Link>
       <Link to="/Current-weather" className='B'>Current Weather</Link>
-      <Link to="/Forecast " className='B'>Forecast</Link>
+      <Link to="/Forecast " className='B'>History</Link>
       <Link to="/Map-weather " className='B'>Map</Link>
       <Link to="/about" className='B'>About</Link>
    
