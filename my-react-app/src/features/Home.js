@@ -12,8 +12,7 @@ function Home({ className }) {
   const day = currentDate.getDate();
   const month = currentDate.toLocaleString('default', { month: 'long' }); // Get full month name
   const year = currentDate.getFullYear();
-  const API_KEY = 'bf998954d92cc264bd1a56bf70845d63';
-
+  
   //api
   // const fetchWeather = async () => {
   //   try {
@@ -26,7 +25,7 @@ function Home({ className }) {
   // };
   const fetchWeather = async () => {
     try {
-      const response = await axios.post('http://localhost:your_port/your_api_endpoint', { city });
+      const response = await axios.post('http://localhost:5000/products', { city });
       setWeatherData([...weatherData, response.data]);
       setCity('');
     } catch (error) {
@@ -41,7 +40,7 @@ function Home({ className }) {
     
     const fetchWeatherData = async () => {
       try {
-        const response = await axios.get('http://localhost:your_port/your_api_endpoint');
+        const response = await axios.get('http://localhost:5000/products');
         setWeatherData(response.data);
       } catch (error) {
         console.error('Error fetching weather data:', error);
@@ -87,7 +86,7 @@ function Home({ className }) {
   const updateWeather = async (index) => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        `http://localhost:5000/products`
       );
 
       const updatedWeatherData = [...weatherData];
