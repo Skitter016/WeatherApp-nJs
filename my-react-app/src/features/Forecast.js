@@ -56,5 +56,98 @@ Forecast.propTypes = {
 };
 
 export default styled(Forecast)`
-  /* Your styling code here */
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+  height: 100vh;
+  background-color: #f0f0f0;
+  background-image: url(${backgroundImage});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+
+input {
+  padding: 5px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+}
+
+button:hover {
+  background-color: #0056b8;
+}
+
+.playground-card {
+  margin-top: 100px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+
+.topic {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2px;
+  color: white;
+  font-size: 42px;
+  -webkit-text-stroke: 3px black;
+}
+
+.weather-card {
+  width: 300px;
+  margin: 5px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+}
+
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: 5px 0;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #c82333;
+}
 `;
+
