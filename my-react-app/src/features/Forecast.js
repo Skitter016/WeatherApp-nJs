@@ -8,14 +8,10 @@ function Forecast({ className }) {
   const [forecastData, setForecastData] = useState([]);
 
   useEffect(() => {
-    const city = ['London']; // Your chosen city
-    const API_KEY = 'bf998954d92cc264bd1a56bf70845d63'; // Replace with your API key
     const fetchForecastData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/day1`
-        );
-        setForecastData(response.data.list);
+        const response = await axios.get('http://localhost:5000/products');
+        setForecastData(response.data);
       } catch (error) {
         console.error('Error fetching forecast data:', error);
       }
@@ -24,20 +20,13 @@ function Forecast({ className }) {
     fetchForecastData();
   }, []);
 
-
-
-
-  
   const getNextDayForecast = () => {
-    // Get the current date and the next day's date
+    // Modify the logic according to your new data structure
     const currentDate = new Date();
     const nextDayDate = new Date();
     nextDayDate.setDate(currentDate.getDate() + 1);
-    // Filter forecast data for the next day
-    const nextDayForecast = forecastData.filter(item => {
-      const itemDate = new Date(item.dt * 1000);
-      return itemDate.getDate() === nextDayDate.getDate();
-    });
+
+    const nextDayForecast = forecastData.filter(item => item.name === 'London'); // Filter data based on your chosen city
 
     return nextDayForecast;
   };
@@ -51,10 +40,10 @@ function Forecast({ className }) {
       </div>
       <div className='playground-card'>
         {nextDayForecast.map((forecast, index) => (
-          <div key={index} className="weather-card">
-            <h2>Time: {new Date(forecast.dt * 1000).toLocaleTimeString()}</h2>
-            <p>Temperature: {forecast.main.temp}°C</p>
-            <p>Weather: {forecast.weather[0]?.main}</p>
+          <div key={index} className='weather-card'>
+            <h2>City: {forecast.name}</h2>
+            <p>Temperature: {forecast.temp}</p>
+            <p>Weather: {forecast.weather}</p>
           </div>
         ))}
       </div>
@@ -62,102 +51,10 @@ function Forecast({ className }) {
   );
 }
 
-History.propTypes = {
-  className: PropTypes.string.isRequired
-}
+Forecast.propTypes = {
+  className: PropTypes.string.isRequired,
+};
 
-export default styled(History)`
-
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
- 
-  height: 100vh;
-  background-color: #f0f0f0;
-  background-image: url(${backgroundImage});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-
-input {
-  padding: 5px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-button {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  
-}
-
-button:hover {
-  background-color: #0056b8;
-}
-
-.playground-card {
-  margin-top: 100px;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-}
-
-.topic {
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2px;
-  color: white;
-  font-size: 42px;
-  -webkit-text-stroke: 3px black;
-}
-
-.weather-card {
-  width: 300px;
-  margin: 5px;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
-}
-
-.weather-card:hover {
-  transform: translateY(-5px);
-}
-
-h2 {
-  margin: 0;
-}
-
-p {
-  margin: 5px 0;
-}
-
-button {
-  padding: 6px 12px;
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #c82333;
-}
+export default styled(Forecast)`
+  /* Your styling code here */
 `;

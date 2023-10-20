@@ -15,9 +15,18 @@ function Home({ className }) {
   const API_KEY = 'bf998954d92cc264bd1a56bf70845d63';
 
   //api
+  // const fetchWeather = async () => {
+  //   try {
+  //     const response = await axios.post('http://localhost:8000/', { city });
+  //     setWeatherData([...weatherData, response.data]);
+  //     setCity('');
+  //   } catch (error) {
+  //     console.error('Error fetching weather:', error);
+  //   }
+  // };
   const fetchWeather = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/', { city });
+      const response = await axios.post('http://localhost:your_port/your_api_endpoint', { city });
       setWeatherData([...weatherData, response.data]);
       setCity('');
     } catch (error) {
@@ -29,26 +38,41 @@ function Home({ className }) {
   //show
   useEffect(() => {
     const cities = ['London', 'New York', 'Tokyo', 'Thailand', 'Laos']; // List of cities
-
-    // Function to fetch weather data for each city
+    
     const fetchWeatherData = async () => {
       try {
-        const promises = cities.map(city =>
-          axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
-        );
-
-        const responses = await Promise.all(promises);
-        const data = responses.map(response => response.data);
-
-        setWeatherData(data);
+        const response = await axios.get('http://localhost:your_port/your_api_endpoint');
+        setWeatherData(response.data);
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }
     };
-
-    // Call the function when the component mounts
+  
     fetchWeatherData();
   }, []);
+  // useEffect(() => {
+  //   const cities = ['London', 'New York', 'Tokyo', 'Thailand', 'Laos']; // List of cities
+
+  //   // Function to fetch weather data for each city
+  //   const fetchWeatherData = async () => {
+  //     try {
+  //       const promises = cities.map(city =>
+  //         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+  //       );
+
+  //       const responses = await Promise.all(promises);
+  //       const data = responses.map(response => response.data);
+
+  //       setWeatherData(data);
+  //     } catch (error) {
+  //       console.error('Error fetching weather data:', error);
+  //     }
+  //   };
+
+  //   // Call the function when the component mounts
+  //   fetchWeatherData();
+  // }, []);
+
 
   //
 
